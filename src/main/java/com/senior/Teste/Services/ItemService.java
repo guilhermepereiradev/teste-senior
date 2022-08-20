@@ -3,7 +3,11 @@ package com.senior.Teste.Services;
 import com.senior.Teste.Models.Item;
 import com.senior.Teste.Repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ItemService {
@@ -14,4 +18,10 @@ public class ItemService {
     public Item createItem(Item item){
         return itemRepository.save(item);
     }
+
+    public Item findById(UUID id){
+        Optional<Item> item = itemRepository.findById(id);
+        return item.orElseThrow();
+    }
+
 }
