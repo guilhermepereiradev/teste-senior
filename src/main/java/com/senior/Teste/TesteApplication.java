@@ -1,4 +1,4 @@
-package com.senior.teste;
+package com.senior.Teste;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
