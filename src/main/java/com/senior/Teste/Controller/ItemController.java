@@ -26,9 +26,21 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Item> findById(@PathVariable UUID id){
-        Item item = itemService.findById(id);
+    public ResponseEntity<Item> findItemById(@PathVariable UUID id){
+        Item item = itemService.findItemById(id);
         return ResponseEntity.ok().body(item);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable UUID id){
+        item.setId(id);
+        itemService.updateItem(item);
+        return ResponseEntity.ok().body(item);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItemById(@PathVariable UUID id){
+        itemService.deleteItemById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -9,7 +9,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", updatable = false, unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     private UUID id;
 
     @Column(name = "description", nullable = false)

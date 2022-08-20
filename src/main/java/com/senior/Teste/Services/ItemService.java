@@ -19,9 +19,17 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public Item findById(UUID id){
+    public Item findItemById(UUID id){
         Optional<Item> item = itemRepository.findById(id);
         return item.orElseThrow();
+    }
+
+    public Item updateItem(Item item){
+        return itemRepository.save(item);
+    }
+
+    public void deleteItemById(UUID id){
+        itemRepository.deleteById(id);
     }
 
 }
