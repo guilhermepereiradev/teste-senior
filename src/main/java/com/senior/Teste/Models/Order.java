@@ -1,5 +1,6 @@
 package com.senior.Teste.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -15,10 +16,11 @@ public class Order {
     @Column(name = "id", unique = true, nullable = false)
     private UUID id;
 
-    @Column(name = "number", nullable = false)
+    @Column(name = "number", nullable = false, unique = true)
     private Integer number;
 
     @Column(name = "date", nullable = false)
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Timestamp date;
 
     @Column(name = "percentual_discount", nullable = false)
