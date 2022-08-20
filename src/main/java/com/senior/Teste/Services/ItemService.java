@@ -2,10 +2,12 @@ package com.senior.Teste.Services;
 
 import com.senior.Teste.Models.Item;
 import com.senior.Teste.Repositories.ItemRepository;
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,6 +32,10 @@ public class ItemService {
 
     public void deleteItemById(UUID id){
         itemRepository.deleteById(id);
+    }
+
+    public List<Item> findAllItems(){
+        return itemRepository.findAll();
     }
 
 }
