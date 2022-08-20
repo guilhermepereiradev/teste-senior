@@ -24,7 +24,7 @@ public class Order {
     private Timestamp date;
 
     @Column(name = "percentual_discount", nullable = false)
-    private double percentualDiscount;
+    private Double percentualDiscount;
 
 
     @Column(name = "total_value")
@@ -32,7 +32,7 @@ public class Order {
 
     public Order() {}
 
-    public Order(UUID id, Integer number, Timestamp date, double percentualDiscount, Double totalValue) {
+    public Order(UUID id, Integer number, Timestamp date, Double percentualDiscount, Double totalValue) {
         this.id = id;
         this.number = number;
         this.date = date;
@@ -64,11 +64,11 @@ public class Order {
         this.date = date;
     }
 
-    public double getPercentualDiscount() {
+    public Double getPercentualDiscount() {
         return percentualDiscount;
     }
 
-    public void setPercentualDiscount(double percentualDiscount) {
+    public void setPercentualDiscount(Double percentualDiscount) {
         this.percentualDiscount = percentualDiscount;
     }
 
