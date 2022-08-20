@@ -1,15 +1,15 @@
 package com.senior.Teste.Models;
 
 public enum TypeItem {
-    P("Product"), S("Service");
+    P('P'), S('S');
 
-    private String content;
+    private Character content;
 
-    TypeItem(String content){
+    TypeItem(Character content){
         this.content = content;
     }
 
-    public String getContent(){
+    public Character getContent(){
         return content;
     }
 }
