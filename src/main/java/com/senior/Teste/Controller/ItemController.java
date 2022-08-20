@@ -35,7 +35,8 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@RequestBody Item item, @PathVariable UUID id){
-        item.setId(id);
+        Item oldItem = itemService.findItemById(id);
+        item.setId(oldItem.getId());
         itemService.updateItem(item);
         return ResponseEntity.ok().body(item);
     }

@@ -5,6 +5,10 @@ import com.senior.Teste.Repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class OrderService {
 
@@ -13,5 +17,22 @@ public class OrderService {
 
     public Order createOrder(Order order){
         return orderRepository.save(order);
+    }
+
+    public Order findOrderById(UUID id){
+        Optional<Order> order = orderRepository.findById(id);
+        return order.orElseThrow();
+    }
+
+    public Order updateOrder(Order order){
+        return orderRepository.save(order);
+    }
+
+    public void deleteOrderById(UUID id){
+        orderRepository.deleteById(id);
+    }
+
+    public List<Order> listAllOrders(){
+        return orderRepository.findAll();
     }
 }
