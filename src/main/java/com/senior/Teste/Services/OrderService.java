@@ -1,6 +1,9 @@
 package com.senior.Teste.Services;
 
+import com.senior.Teste.Models.Item;
 import com.senior.Teste.Models.Order;
+import com.senior.Teste.Models.OrderItems;
+import com.senior.Teste.Repositories.ItemRepository;
 import com.senior.Teste.Repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,9 @@ public class OrderService {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     public Order createOrder(Order order){
         return orderRepository.save(order);
@@ -34,5 +40,9 @@ public class OrderService {
 
     public List<Order> listAllOrders(){
         return orderRepository.findAll();
+    }
+
+    public Order closeOrder(Order order){
+        return orderRepository.save(order);
     }
 }

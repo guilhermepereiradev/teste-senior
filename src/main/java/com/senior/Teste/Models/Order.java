@@ -1,9 +1,7 @@
 package com.senior.Teste.Models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -103,4 +101,5 @@ public class Order {
     public void setOrderItems(List<OrderItems> items) {
         this.items = items;
     }
+
 }
