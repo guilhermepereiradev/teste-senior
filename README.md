@@ -3,8 +3,18 @@
 
 ## Como executar a aplicação:
 
+Após o clone, configure a conexão com o banco de dados.
 
+~~~
+spring.datasource.url={dbUrl}
+spring.datasource.username={dbUsernam}
+spring.datasource.password={dbPassword}
 
+spring.jpa.show-sql=true
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+~~~
 
 
 <hr>
@@ -12,10 +22,10 @@
 ## Endpoints da aplicação:
 
 ### Postman
-https://www.postman.com/galactic-flare-213161/workspace/teste-senior/collection/21160717-a283b61b-6ba5-4d13-8302-339e3492cf03?action=share&creator=21160717
+<https://www.postman.com/galactic-flare-213161/workspace/teste-senior/collection/21160717-a283b61b-6ba5-4d13-8302-339e3492cf03?action=share&creator=21160717>
 
 ### Arquivo JSON
-https://www.getpostman.com/collections/0a29880b3bc84b0ed439
+<https://www.getpostman.com/collections/0a29880b3bc84b0ed439>
 
 # 
 
