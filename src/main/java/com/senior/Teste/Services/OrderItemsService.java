@@ -9,6 +9,7 @@ import com.senior.Teste.Repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class OrderItemsService {
 
         orderItems.setOrder(order.get());
         orderItems.setItemId(item.get().getId());
+        orderItems.calcTotalValue(item.get().getValue());
         orderItems.setTotalValue(item.get().getValue() * orderItems.getQuantity());
 
         return orderItemsRepository.save(orderItems);
@@ -37,5 +39,19 @@ public class OrderItemsService {
     public OrderItems findOrderItems(UUID orderId, UUID id){
         Optional<OrderItems> orderItems = orderItemsRepository.findOrdemItem(orderId, id);
         return orderItems.orElseThrow();
+    }
+
+    public OrderItems updateOrdemItems(OrderItems orderItems){
+        Optional<Item> item = itemRepository.findById(orderItems.getItemId());
+        orderItems.calcTotalValue(item.get().getValue());
+        return orderItemsRepository.save(orderItems);
+    }
+
+    public void deleteOrdemItem(OrderItems orderItems){
+        orderItemsRepository.delete(orderItems);
+    }
+
+    public List<OrderItems> listAllOrderItems(UUID orderId){
+        return orderItemsRepository.lisAllOrderItems(orderId);
     }
 }

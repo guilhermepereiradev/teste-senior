@@ -17,7 +17,7 @@ public class OrderItems {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="id_order", nullable=false, unique = true)
+    @JoinColumn(name="id_order", nullable=false)
     private Order order;
 
     @Column(name = "id_item", nullable = false)
@@ -68,6 +68,11 @@ public class OrderItems {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public void calcTotalValue(Double value){
+        Double totalValue = this.getQuantity()*value;
+        this.setTotalValue(totalValue);
     }
 
     public Double getTotalValue() {

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -34,5 +36,26 @@ public class OrderItemsController {
     public ResponseEntity<OrderItems> findOrderItems(@PathVariable UUID orderId, @PathVariable UUID id){
         OrderItems orderItems = orderItemsService.findOrderItems(orderId, id);
         return ResponseEntity.ok().body(orderItems);
+    }
+
+    @PutMapping("/{orderId}/items/{id}")
+    public ResponseEntity<OrderItems> updateOrderItems(@PathVariable UUID orderId, @PathVariable UUID id, @RequestBody OrderItems orderItems){
+        OrderItems oldOrderItems = orderItemsService.findOrderItems(orderId, id);
+        orderItems.setId(oldOrderItems.getId());
+        orderItems.setOrder(oldOrderItems.getOrder());
+        orderItemsService.updateOrdemItems(orderItems);
+        return ResponseEntity.ok().body(orderItems);
+    }
+
+    @DeleteMapping("/{orderId}/items/{id}")
+    public ResponseEntity<Void> deleteOrdemItem(@PathVariable UUID orderId, @PathVariable UUID id){
+        OrderItems orderItems = orderItemsService.findOrderItems(orderId, id);
+        orderItemsService.deleteOrdemItem(orderItems);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{orderId}/items")
+    public List<OrderItems> listAllOrderItems(@PathVariable UUID orderId){
+        return orderItemsService.listAllOrderItems(orderId);
     }
 }
