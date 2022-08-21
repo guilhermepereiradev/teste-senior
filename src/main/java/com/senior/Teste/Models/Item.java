@@ -9,21 +9,21 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
     @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "value", nullable = false)
-    private double value;
+    private Double value;
 
     @Column(name = "type", nullable = false)
     private TypeItem type;
 
     public Item(){};
 
-    public Item(UUID id, String description, double value, TypeItem type) {
+    public Item(UUID id, String description, Double value, TypeItem type) {
         this.id = id;
         this.description = description;
         this.value = value;
@@ -46,11 +46,11 @@ public class Item {
         this.description = description;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
