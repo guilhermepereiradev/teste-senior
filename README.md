@@ -251,7 +251,7 @@ https://www.getpostman.com/collections/0a29880b3bc84b0ed439
 	
 #### Buscar todos os Orders Items:
 		método: GET,
-		url: {url base}/api/orders/{orderItem}
+		url: {url base}/api/orders/{orderId}/items
 		retorno: 
 			[
 		    		{
