@@ -1,10 +1,14 @@
 package com.senior.Teste.Models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,11 +30,23 @@ public class Order {
     @Column(name = "percentual_discount", nullable = false)
     private Double percentualDiscount;
 
-
     @Column(name = "total_value")
     private Double totalValue;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @OneToMany(targetEntity=OrderItems.class,cascade = CascadeType.ALL, mappedBy = "order")
+    private List<OrderItems> items = new ArrayList<>();
+
     public Order() {}
+
+    public Order(UUID id, Integer number, Timestamp date, Double percentualDiscount, Double totalValue, List<OrderItems> items) {
+        this.id = id;
+        this.number = number;
+        this.date = date;
+        this.percentualDiscount = percentualDiscount;
+        this.totalValue = totalValue;
+        this.items = items;
+    }
 
     public Order(UUID id, Integer number, Timestamp date, Double percentualDiscount, Double totalValue) {
         this.id = id;
@@ -78,5 +94,13 @@ public class Order {
 
     public void setTotalValue(Double totalValue) {
         this.totalValue = totalValue;
+    }
+
+    public List<OrderItems> getItems() {
+        return items;
+    }
+
+    public void setOrderItems(List<OrderItems> items) {
+        this.items = items;
     }
 }

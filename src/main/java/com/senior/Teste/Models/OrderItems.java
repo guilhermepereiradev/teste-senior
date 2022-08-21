@@ -1,5 +1,6 @@
 package com.senior.Teste.Models;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,22 +15,22 @@ public class OrderItems {
     @Column(name = "id", unique = true, nullable = false)
     private UUID id;
 
-    @Column(name = "order_id", nullable = false)
-    private UUID order;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="id_order", nullable=false, unique = true)
+    private Order order;
 
-    @Column(name = "item_id", nullable = false)
+    @Column(name = "id_item", nullable = false)
     private UUID itemId;
-
     @Column(name = "quantity", nullable = false)
     private Double quantity;
-
 
     @Column(name = "total_value")
     private Double totalValue;
 
     public OrderItems(){}
 
-    public OrderItems(UUID id, UUID order, UUID itemId, Double quantity, Double totalValue) {
+    public OrderItems(UUID id, Order order, UUID itemId, Double quantity, Double totalValue) {
         this.id = id;
         this.order = order;
         this.itemId = itemId;
@@ -45,11 +46,11 @@ public class OrderItems {
         this.id = id;
     }
 
-    public UUID getOrder() {
+    public Order getOrder() {
         return order;
     }
 
-    public void setOrder(UUID order) {
+    public void setOrder(Order order) {
         this.order = order;
     }
 
